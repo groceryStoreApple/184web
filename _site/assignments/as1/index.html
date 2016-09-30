@@ -22,9 +22,9 @@
   
   
     
-      <link rel="stylesheet" href="../css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../../css/bootstrap.min.css" />
     
-      <link rel="stylesheet" href="../css/main.css" />
+      <link rel="stylesheet" href="../../css/main.css" />
     
     
   
@@ -83,7 +83,7 @@
 
 
 
-<a href="../aboutme/index.html">About Me</a>
+<a href="../../aboutme/index.html">About Me</a>
 
           </li>
         
@@ -97,7 +97,7 @@
 
 
 
-<a href="../assignments/index.html">Assignments</a>
+<a href="../../assignments/index.html">Assignments</a>
 
          </li>
         
@@ -187,7 +187,7 @@
   <div class="avatar-container">
     <div class="avatar-img-border">
       <a href="../index.html">
-        <img class="avatar-img" src="../img/avatar-icon.png" />
+        <img class="avatar-img" src="../../img/avatar-icon.png" />
     </a>
     </div>
   </div>
@@ -201,12 +201,101 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <p><br><br><br></p>
-      <p>Here is a list of assignments for this class</p>
-
+      <h1 align="center">Shader</h1>
+      <p>This is the presentation of the results from the shader following Phong shading algorithm implemented by Siqi Zuo and me.</p>
+      <p>The parameters to generate each image are implemented with the following flags</p>
       <ul>
-        <li><a href="as0/index.html">Assignment0</a></li>
-        <li><a href="as1/index.html">Assignment1</a></li>
+        <li>-pl x y z r g b : set a point light at (x,y,z) with color (r,g,b) </li>
+        <li>-dl x y z r g b : set a directional light at (x,y,z) with color (r,g,b). For both point light and directional light, the intensity is captured in the magnitude of the (r,g,b) values </li>
+        <li>-ks a b c : set a specular coefficient </li>
+        <li>-ka a b c : set a ambient coefficient </li>
+        <li>-kd a b c : set a diffuse coefficient </li>
+        <li>-sp p : the specular exponent used in Phong shading model</li>
+        <li>-spu pu : the u component in anisotropic specular coefficient</li>
+        <li>-spv pv : the v component in anisotropic specular coefficient</li>
+        <li>-o filename : save the image to a .bmp file with filename</li>
       </ul>
+
+      <h3 align ="center">Some cool stuff to begin with</h3>
+      <br>
+      <img src="debate.bmp">
+      <img src="sunrise.bmp">
+      <img src="eye.bmp">
+      <img src="poles.bmp">
+      <br>
+      <p>from top to bottom:</p>
+      <ul>
+        <li><b>"Debate"</b>: created with ./as1 -kd 0.7 1 1.2 -ks 1.2 1 0.7 -pl 1 1 -2 2 0.5 1 -pl -1 -1 -2 0 0.5 2 -spv 0.01 -spu 100 -pl 0 0 2 1 1 1</li>
+        <li><b>"Sunrise"</b>: created with ./as1 -kd 0.7 1 1.2 -ks 1.2 1 0.7 -pl 1 1 -2 1 0.5 0.1 -pl -1 -1 -2 0.1 0.5 1</li>
+        <li><b>"Eye"</b>: created with ./as1 -kd 0.7 1 1.2 -ks 1.2 1 0.7 -pl 0 0 -1 0.5 0.5 0.5 -pl 0 0 2 0.8 0.8 0.8 -sp 3</li>
+        <li><b>"Poles"</b>: created with ./as1 -kd 0.7 1 1.2 -ks 1.2 1 0.7 -pl 1 1 -2 2 0.5 0 -pl -1 -1 -2 0.3 2 1 -sp 10</li>
+      </ul>
+
+      <h3 align="center">The Required Deliverables</h3>
+      <ol>
+        <li><p>Diffuse only with single light source</p>
+            <img src="diffuse_only.bmp" height="300" width="300">
+            <p>./as1 -kd 2 1 2 -dl -1 -1 -1 0.5 0.5 1.5</p>
+        </li>
+
+        <li><p>Specular only with single directial light, light shines towards (0,-1,-1), the 'forehead' of the sphere is lit. Notice that as sp increases, the light in the middle shrinks in size</p>
+            <img  src="specular_only_p1.bmp" height="300" width="300">
+            <p>./as1 -ks 2 1 2 -dl 0 -1 -1 0.5 0.5 1.5  -sp 1 </p>
+            <img  src="specular_only_p5.bmp" height="300" width="300">
+            <p>./as1 -ks 2 1 2 -dl 0 -1 -1 0.5 0.5 1.5  -sp 5 </p>
+            <img  src="specular_only_p10.bmp" height="300" width="300">
+            <p>./as1 -ks 2 1 2 -dl 0 -1 -1 0.5 0.5 1.5  -sp 10 </p>
+        </li>
+        <li>Specular only with single point light</li>
+          <p>Specular only with single point light, light is placed at (0,-1,1), the 'foot' of the sphere. Notice that as sp increases, the light in the middle shrinks in size</p>
+            <img  src="specular_only_pl_p1.bmp" height="300" width="300">
+            <p>./as1 -ks 2 1 2 -pl 0 -1 1 0.5 0.5 1.5  -sp 1</p>
+            <img  src="specular_only_pl_p5.bmp" height="300" width="300">
+            <p>./as1 -ks 2 1 2 -pl 0 -1 1 0.5 0.5 1.5  -sp 5 </p>
+            <img  src="specular_only_pl_p10.bmp" height="300" width="300">
+            <p>./as1 -ks 2 1 2 -pl 0 -1 1 0.5 0.5 1.5  -sp 10 </p>
+        <li>Specular and diffuse</li>
+          <p>Diffuse reflects primarily red light, specular reflects primarily blue light, to create the distinction between two types of reflection</p>
+          <img src="diffuse_and_specular.bmp" height="300" width="300">
+          <p>./as1 -kd 2 1 0.5 -ks 0.5 1 2 -dl -1 -1 -1 0.5 0.5 1.5 </p>
+        <li>Anistropic specularity</li>
+        <p>Using u,v coefficients to achieve anisotropic reflection. If we keep u fixed as 1, and vary v from 1 to 5 to 10, we can observe the light band gets widened.</p>
+        <img src="spu_1_spv_1.bmp" height="300" width="300">
+        <p>./as1 -ks 0.5 1 2 -dl -1 -1 -1 0.5 0.5 1.5  -spu 1 -spv 1</p>
+        <img src="spu_1_spv_5.bmp" height="300" width="300">
+        <p>./as1 -ks 0.5 1 2 -dl -1 -1 -1 0.5 0.5 1.5  -spu 1 -spv 5 </p>
+        <img src="spu_1_spv_10.bmp" height="300" width="300">
+        <p>./as1 -ks 0.5 1 2 -dl -1 -1 -1 0.5 0.5 1.5  -spu 1 -spv 10 </p>
+        
+        <p>Just like v controls the horizontal broadening of the light band, we can vary u to elongate the light band. The below two examples shows the extreme cases.</p>
+        <img src="spu_100_spv_0.01.bmp" height="300" width="300">
+        <img src="spu_0.01_spv_100.bmp" height="300" width="300">
+        <p>left: ./as1 -ks 0.5 1 2 -dl -1 -1 -1 0.5 0.5 1.5  -spu 0.01 -spv 100</p>
+        <p>right: ./as1 -ks 0.5 1 2 -dl -1 -1 -1 0.5 0.5 1.5  -spu 100 -spv 0.01</p>
+
+
+        <li>Multiple light sources</li>
+        <p>Multiple light sources</p>
+        <img src="4_corner_lights.bmp" height="300" width="300">
+        <p>Four direction lights placed at four corners of the scene, shining towards the sphere. 
+          ./as1 -kd 2 1 0.5 -ks 0.5 1 2 -dl 1 1 -1 0.1 0.1 0.1 -dl -1 1 -1 0.1 0.1 0.1 -dl 1 -1 -1 0.1 0.1 0.1 -dl -1 -1 -1 0.1 0.1 0.1 -sp 10</p>
+        <img src="two_corner_point_light.bmp" height="300" width="300">
+        <p>Two point lights placed at the diagonal of the scene, one behind and one in front. 
+          ./as1 -kd 2 1 0.5 -ks 0.5 1 2 -pl -1 -1 -1 0.5 0.5 0.5 -pl 1 1 1 0.5 0.5 0.5</p>
+        <img src="trifecta.bmp" height="300" width="300">
+        <p>Three point light shining before the sphere.
+          ./as1 -kd 2 1 0.5 -ks 0.5 1 2 -pl 0 1 1 0.5 0.5 0.5 -pl 0.8 -0.5 1 0.5 0.5 0.5 -pl -0.8 -0.5 1 0.5 0.5 0.5 -sp 5 -ka 0.1 0.1 0.1</p>
+      </ol>
+
+      <h3 align="center">Extra Credits</h3>
+      <ul>
+        <li>We implemented image saving using the C++ bitmap_image library. Use '-o' flag followed by filename to save file</li>
+        <li><p>Beside sphere, we also allows user to shade a hyperboloid, use flag '-hyper' to shade a hyperboloid instead of a sphere. This are some examples.</p>
+        <img src="hyper.bmp" height="300" width="300">
+        <img src="hyper_basic.bmp" height="300" width="300">
+        </li>
+      </ul>
+
 
 
 <!--       <p>My name is Haonan(Alex) Jing. I was born in mainland China and moved to Singapore for my high school when I was 14. Currently, I am a undergraduate studying computer science at UC Berkeley.</p>
