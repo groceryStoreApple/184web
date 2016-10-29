@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Alex Jing</title>
+
+  <meta name="author" content="Haonan (Alex) Jing" />
+  
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Alex Jing - The personal website of Alex Jing" href="/alexweb/feed.xml" />
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+      
+  
+  
+    
+      <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="../../css/main.css" />
+    
+    
+  
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+    
+  
+  
+
+  
+
+  <!-- Facebook OpenGraph tags -->
+  <meta property="og:title" content="Alex Jing" />
+  <meta property="og:type" content="website" />
+  
+  
+  <meta property="og:url" content="https://grocerystoreapple.github.io/alexweb/" />
+  
+  
+  
+  <meta property="og:image" content="https://grocerystoreapple.github.io/alexweb/img/avatar-icon.png" />
+  
+  
+</head>
+
+
+  <body>
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://grocerystoreapple.github.io/alexweb">Alex Jing</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="../../aboutme/index.html">About Me</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="../../assignments/index.html">Assignments</a>
+
+         </li>
+        
+<!--         
+        
+          <li class="navlinks-container">
+            <a class="navlinks-parent" href="javascript:void(0)">Professional</a>
+            <div class="navlinks-children">
+              
+                
+                  
+            
+
+
+
+
+
+<a href="/alexweb/static/resume.pdf">resume</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="/alexweb/static/transcript.pdf">transcript</a>
+
+                
+              
+            </div>
+          </li>
+         -->
+        
+        
+<!--           <li class="navlinks-container">
+            <a class="navlinks-parent" href="javascript:void(0)">Student Resources</a>
+            <div class="navlinks-children">
+              
+                
+                  
+            
+
+
+
+
+
+<a href="/alexweb/cs61c/">cs61c</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="/alexweb/cs61b/">cs61b</a>
+
+                
+              
+                
+                  
+            
+
+
+
+
+
+<a href="/alexweb/others/">everythin else</a>
+
+                
+              
+            </div>
+          </li> -->
+        
+        
+      </ul>
+    </div>
+
+  
+  <div class="avatar-container">
+    <div class="avatar-img-border">
+      <a href="../index.html">
+        <img class="avatar-img" src="../../img/avatar-icon.png" />
+    </a>
+    </div>
+  </div>
+  
+
+  </div>
+</nav>
+
+
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <p><br><br><br></p>
+      <h1 align="center">Raytracer</h1>
+      <p>This is the presentation of the results from the raytracer implemented by <a href="http://inst.cs.berkeley.edu/~cs184-ace/">Siqi Zuo</a> and me. We did most of the class design following the raytracer design note with some heavy customization, of which we felt extremely proud</p>
+
+      <h2 align = "center">Some design choices</h2>
+      <p>We made some design choices which we felt necessary to mention there</p>
+      <p>The most promiment feature is the normalization of colors. Without normalization, we experience very bright and vibrant colors like shown below. However, due to the additive nature of color, color is maxed out at (255,255,255) at some points, which produces an ugly ringy artifect discussed in lecture. For the sake of color accuracy and numerical stability, we decided normalize our color. We did this by recording the highest rgb value in the image and normalize all values to that maximum and scale everything to 255. This leads to our images being significantly darker but it is more numerically accurate. Most of the image below are color normalized unless otherwise specified. We also have the un-normalized version by side for reference.</p>
+      <img src="max.bmp" height="300" width="300">
+      <img src="ringy.bmp" height="300" width="300">
+      <br>
+
+      <h2 align = "center">Usage</h2>
+      <ul>
+      	<li>Scene Setting:
+      		<ol>
+      			<li>Camera and viewing screen: <code>cam ex ey ez llx lly llz lrx lry lrz ulx uly ulz urx ury urz</code></li>
+		      	<li>Point light: <code>ltp px py pz r g b [falloff]</code></li>
+		      	<li>Directional light: <code>ltd dx dy dz r g b </code></li>
+		      	<li>Ambients Light: <code>lta r g b </code></li>
+      		</ol>
+      </li>
+      	<li>Geometry:
+			<ol>
+				<li>Sphere: <code>sph cx cy cz rad</code></li>
+      			<li>Triangle: <code>tri ax ay az bx by bz cx cy cz</code></li>
+      			<li>Rectangle: <code>rec ax ay az bx by bz cx cy cz dx dy dz</code> where a,b,c,d are the vertices of the rectangle in clockwise traversal</li>
+      			<li>Material: <code>mat kar kag kab kdr kdg kdb ksr ksg ksb ksp krr krg krb</code> with phong shading coefficients </li>
+      			<li>Transformation:<br>
+						rotation: <code>xfr rx ry rz</code> where rx, ry, rz are the coordinate values of the vector that encodes rotation<br>
+						translation: <code>xft tx ty tz</code><br>
+						scaling: <code>xfs sx sy sz</code><br>
+      			</li>
+			</ol>
+      	</li>
+      	<li>Others:
+			<ol>
+				<li>Multithreading: activated by <code>-mt [number of threads]</code></li>
+      			<li>Anti-aliasing: activated by <code>-aa [sampling rate]</code> 
+      				 e.g. a sampling rate of 5 generates 25 samples per pixel</li>
+			</ol>
+      	</li>
+      </ul>
+      <h2 align="center">The required</h2>
+      <ol>
+      	<li>Ellipsoid: <br>
+          In our raytracer, ellipsoid is constructed with proper scaling or a sphere. For example, the below sphere is contructed with the following object setting <br>
+          <code>mat 0.1 0.1 0.1 1 0 0 1 1 1 50 0.9 0.9 0.9 <br>
+                xft 0 0 -17 <br>
+                xfs 4 2 2 <br>
+                sph 0 0 0 1 </code><br>
+<!--             <div style="width:auto;height:80px;overflow-y:hidden;overflow-x:scroll;">
+            xfs 4 2 2 sph 0 0 0 1
+            </div> -->
+          <img src="1_ellipsoid.bmp"  height="300" width="300"> 
+          <img src="1_ellipsoid_un.bmp"  height="300" width="300"> 
+          <p>From left to right: normalized, unnormalized.</p>
+
+          <br>
+          Here is one picture of multiple ellipsoids with reflections from the design journal. <br>
+          <img src="many_ellipsoid.bmp" height="300" width="300"> 
+          <img src="many_ellipsoid_un.bmp" height="300" width="300"> <br>
+          <p>From left to right: normalized, unnormalized.</p>
+
+        </li>
+      	<li>Render polygons: <br>
+          We support rendering from the input of a obj file. We break up the vertices into triangles and start rendering. We also support rendering of a trianlge from command line, use <code>tri</code> to input a triangle. Here is an example:
+          <img src="2_renderpolygon.bmp" height="300" width="300"><br>
+          This is rendered from <a href="cmake_logo.obj">this file</a>
+
+        </li>
+      	<li>Phong shading: <br>
+          The shading functionality of this assignment is mostly borrowed from the implementation in the previous assignment. Here we have a comparison between the rendering between raytracer (on the left) and shader (on the right). Note that since we normalize the color to the highest rgb value of the entire image, the raytracer results are necessarily darker. For example: <br>
+          Diffuse and ambient: <br>
+          <code>ltd 1 -1 -1 200 200 200 <br>
+                mat 0.1 0.1 0.1 0.5 1 2 0 0 0 50 0 0 0 <br>
+                sph 0 0 -4 1 <br>
+          </code><br>
+          <img src="3_phong_1_rt.bmp"  height="200" width="200">
+          <img src="3_phong_1_rt_un.bmp"  height="200" width="200">
+          <img src="3_phong_1_sd.bmp"  height="200" width="200">
+          <br>
+          <p>from left to right: raytracer normalized, raytracer unnormalized, shader</p>
+          <br>
+          Added specular: <br>
+          <code>ltd 1 -1 -1 1 1 1 <br>
+                ltd -1 1 1 1 1 1 <br>
+                mat 0.1 0.1 0.1 0.5 1 2 2 1 0.5 50 0 0 0 <br>
+                sph 0 0 -4 1 <br>
+          </code>
+          <img src="3_phong_2_rt.bmp"  height="200" width="200">
+          <img src="3_phong_2_rt_un.bmp"  height="200" width="200">
+          <img src="3_phong_2_sd.bmp"  height="200" width="200">
+                    <p>from left to right: raytracer normalized, raytracer unnormalized, shader</p>
+
+        </li>
+
+      	<li>Shadows: <br>
+        With raytracing, shadowing effect comes as inherent trait as long as the ray intersection is handled correctly. For example:
+        <code>ltd 1 -1 -1 1 1 1 <br>
+ltd -1 1 1 1 1 1 <br>
+mat 0.1 0.1 0.1 1 0 1 1 1 1 50 0 0 0 <br>
+sph 0 0 -20 3 <br>
+mat 0.1 0.1 0.1 1 1 0 1 1 1 50 0 0 0 <br>
+sph -2 2 -15 1 <br>
+        </code>
+        <img src="4_shadow.bmp" height="300" width="300">
+        </li>
+
+      	<li>Reflections: <br>
+        Reflections are implemented by creating reflected rays and making recursive calls on the reflected rays. For example, we added an reflective triangle to the above scene. <br>
+        <code>
+          mat 0.1 0.1 0.1 1 0 1 1 1 1 50 0 0 0 <br>
+sph 0 0 -20 3 <br>
+mat 0.1 0.1 0.1 1 1 0 1 1 1 50 0 0 0 <br>
+sph -2 2 -15 1 <br>
+mat 0.1 0.1 0.1 0 1 1 1 1 1 50 0 0 0 <br>
+sph -2 -2 -15 1 <br>
+mat 0.1 0.1 0.1 0.1 0.1 0.1 1 1 1 50 1 1 1 <br>
+tri 5 5 -17 1 4 -20 6 -1 -20 <br>
+        </code>
+        <img src="5_reflect.bmp" height="300" width="300">
+        <img src="5_reflect_un.bmp" height="300" width="300">
+        <p>From left to right: normalized, unnormalized.</p>
+
+        </li>
+
+      	<li>Linear transformation: we supported three types of linear transformation (translation, rotation and scaling). Scaling is implemented with respect to the center of the object (<b>NOT</b> the world center). In the below examples, we keep the red sphere fixed as reference and apply the transformations onto the green sphere.
+            <ol>
+              <li>original: <br>
+                <img src="6_origin.bmp" height="300" width="300" >
+              </li>
+              <li>translation 2 on -y direction: <code>xft 0 -2 0</code> <br>
+                <img src="6_translate.bmp" height="300" width="300">
+              </li>
+              <li>scaling by 0.5 on x axis and 2 on y axis: <code>xfs 0.5 2 1 </code> <br>
+                <img src="6_scaling.bmp" height="300" width="300">
+              </li>
+              <li>rotation by 40 degrees counter-clockwise about z axis: <code>xfr 0 0 40</code> <br>
+                <img src="6_rot.bmp" height="300" width="300">
+              </li>
+              <li>combined: <code>xft  0 4 0 xfr 0 0 40 xfs 2 0.5 1 xft 0 -4 0 \</code>
+                  <img src="6_combined.bmp" height="300" width="300">
+              </li>
+            </ol>
+        </li>
+
+      	
+        <li>Point and directional lights: <br>
+          Directional lights in all the above examples, we used directional lights of the following settings <code>ltd 1 -1 -1 1 1 1 ltd -1 1 1 1 1 1</code><br>
+
+          Point lights has a fall off property, we provide three choices: <br>
+          <img src="7_pl_no_fall_off.bmp" height="200" width="200">
+          <img src="7_pl_falloff_1.bmp" height="200" width="200"> 
+          <img src="7_pl_falloff_2.bmp" height="200" width="200"> <br>
+          which are no falloff, linear falloff and quadratic falloff from left to right. Normalization is turned off to show the effect of fall off.
+        </li>
+      	
+        <li>output: <br>
+        We used the same output C++ bitmap_image library as last time. Use <code>out [filename]</code> to specify the outputfile name</li>
+      </ol>
+      <h2 align = "center">Extra Credits</h2>
+      <ol>
+      	<li>
+          <h3>Multi-threading</h3>
+          <p>We quickly realized that rendering is very computation heavy which leads us to use multi-threading to speed up the rendering process. We break up the rendering of the image screen to thread blocks based on y axis -- for better cache performance. For example, if we deploy 5 threads to render a 500 by 500 image, thread one will handle the first 0 to 100 rows of pixels in the image and so forth. With multi-threading, the rendering time is significantly reduced, especially on larger inputs. Use <code>mt [NUM_OF_THREADS]</code> to activate, relevant code can be found in Scene.cpp and <code>Scene::render_mt</code> function</p>
+        </li>
+      	<li><h3>Anti-aliasing</h3>
+
+        <p>We use multiple jittered-sampling anti-aliasing. Activate by <code>aa [sampling rate]</code>, i.e. a sampling rate of 5 will lead to 25 samples per pixel. We then average the sample color values as the final color for the pixel. This increases computational task tremendously but thankfully we implemented multithreading support. The effect is remarkable.</p>
+        <img src="un_aa.bmp" height="300" width="300">
+        <img src="aa.bmp" height="300" width="300"> <br>
+        The right is anti-aliased version. The benefits are best observed at the alleviation of the jaggy effects at the boundary where two spheres meet. The effects are more pronouced when the spheres are further and less pixels are used to feature the details. <br>
+        <img src="small_un_aa.bmp" height="300" width="300">
+        <img src="6_combined_aa.bmp" height="300" width="300"> <br>
+        The anti-aliased version of the beautiful ellipsoids are
+        <img src="ec1_distributedraytracing.bmp" height="400" width="400">
+        </li>
+        <li>
+        <h3>Programmable shading</h3>
+        We came up with two artistically appealling programmable shading algorithms: marble pattern and rainbow pattern. <br>
+        <img src="ec3_programmableshading_2.bmp" height="300" width="300"> 
+        <img src="ec3_programmableshading.bmp" height="300" width="300"> <br>
+        <p>The marble shading is obtained by scaling the coefficients of phong shading, using randomly adjusted sine and cosine scaling factors based on the three components of the point position vector. Details refers to <code>ProgrammableShading.h</code></p>
+        <p>The rainbow pattern is obtained by scaling of the rendered color by non-linear distortions of polynomial interpolations.<code>ProgrammableShading.h</code></p>
+
+        </li>
+      </ol>
+      
+      
+    </div>
+  </div>
+</div>
+<!-- 
+<div class="posts-list">
+  
+</div>
+
+ -->
+
+
+
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="https://www.facebook.com/https://www.facebook.com/haonan.jing" title="Facebook">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://github.com/https://github.com/groceryStoreApple" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+      
+          <li>
+            <a href="mailto:jing.haonan.18@berkeley.edu" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+      
+            
+        </ul>
+        <p class="copyright text-muted">
+      Haonan (Alex) Jing
+      &nbsp;&bull;&nbsp;
+      2016
+      
+      
+      &nbsp;&bull;&nbsp;
+      <a href="https://grocerystoreapple.github.io/alexweb">AlexJing.com</a>
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Theme by
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+        if (typeof jQuery == 'undefined') {
+          document.write('<script src="/alexweb/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+        }
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/alexweb/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+  <script src="/alexweb/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
