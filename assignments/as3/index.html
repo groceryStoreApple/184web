@@ -22,9 +22,9 @@
   
   
     
-      <link rel="stylesheet" href="../css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../../css/bootstrap.min.css" />
     
-      <link rel="stylesheet" href="../css/main.css" />
+      <link rel="stylesheet" href="../../css/main.css" />
     
     
   
@@ -83,7 +83,7 @@
 
 
 
-<a href="../aboutme/index.html">About Me</a>
+<a href="../../aboutme/index.html">About Me</a>
 
           </li>
         
@@ -97,7 +97,7 @@
 
 
 
-<a href="../assignments/index.html">Assignments</a>
+<a href="../../assignments/index.html">Assignments</a>
 
          </li>
         
@@ -187,7 +187,7 @@
   <div class="avatar-container">
     <div class="avatar-img-border">
       <a href="../index.html">
-        <img class="avatar-img" src="../img/avatar-icon.png" />
+        <img class="avatar-img" src="../../img/avatar-icon.png" />
     </a>
     </div>
   </div>
@@ -201,26 +201,64 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <p><br><br><br></p>
-      <p>Here is a list of assignments for this class</p>
+      <h1 align="center">Bezier Surfaces</h1>
+      <p>This is the presentation of the results from the Bezier surface rendering implemented by <a href="http://inst.cs.berkeley.edu/~cs184-ace/">Siqi Zuo</a> and me. Demo video at <a href="https://www.youtube.com/watch?v=CLh7OWfVCd8&feature=youtu.be">this link</a></p>
 
-      <ul>
-        <li><a href="as0/index.html">Assignment0</a></li>
-        <li><a href="as1/index.html">Assignment1</a></li>
-        <li><a href="as2/index.html">Assignment2</a></li>
-        <li><a href="as3/index.html">Assignment3</a></li>
+      <h2>Rendered products</h2>
+      <img src="converted/arch_canonical.png" height="200" width="200" align="center">
+      <img src="converted/teapot_canonical.png" height="200" width="200" align="center">
+      <img src="converted/teacup_canonical.png" height="200" width="200" align="center">
 
-      </ul>
-
-
-<!--       <p>My name is Haonan(Alex) Jing. I was born in mainland China and moved to Singapore for my high school when I was 14. Currently, I am a undergraduate studying computer science at UC Berkeley.</p>
-
-<p>I entered Cal as a chemistry major but I found my passion in computer science after taking cs61a with Prof. John DeNero. In complete honesty the transition was a real struggle, but I am so glad that there were so many people and resources out there to help me.</p>
-
-<p>I enjoy teaching CS because I understand how hard it can be for someone who has never coded in their life and it makes me really happy if I can help make coding less daunting to them, just like how others helped me.</p>
-
-<p>In my spare time, I enjoyed cooking and running. I will be running SF half marathon in the end of July.</p>
- -->
+      <h2>Tessellation</h2>
+      <p>According to the requirement, we made two modes of tessellation, uniform and adaptive.</p>
+      <h4>Uniform tessellation</h3>
+      <img align="center" src="converted/uniform_tess.png" height="300" width="300" align="center"><br>
+      <p>Setting: step size = 0.2, number of triangles generated = 100</p>
+      <p>We can clearly see a uniform grid being rendered.</p>
+      <h4>adaptive tessellation</h3>
+      <p>We also implemented adatpive tessellation. Pass in '-a' at the end of the command to activate adaptive tessellation</p>
       
+      <img align="center" src="converted/adaptive_tess.png" height="300" width="300" align="center"><br>
+      <p>setting: tolerence = 0.05, number of triangles generated = 56</p>
+      <p>It is evident that the flatter surface(e.g. the bottom of the arch) is tessellated to only two triangles. At the same time, the top of the arch is tessellated to more triangles. Overall this leads to a great reduction of number of triangles being rendered.</p>
+      
+      <h4>Adaptive tessellation Artifects</h4>
+      <p>Although tessellation is supposed to be very efficient, we do observe some artifects if parameter is not set carefully.</p>
+
+
+      <img  src="converted/adaptive_better.png" height="200" width="200" align="center">
+      <img  src="converted/adaptive_artifect.png" height="200" width="200" align="center">
+      <img  src="converted/adaptive_shading_artifect.png" height="200" width="200" align="center">
+      <p>Left: uniform tessellation with 0.1 step size, 5200 triangles generated.
+      <br>Middle and right: adaptive tessellation with 0.05 as tolerence, 834 triangles generated</p>
+      
+      <p>Compared to the uniform tessellation, the 'edgy' artifect is more easily observed where we can easily tell that a circle is approximated by a few big polygons. For example, in the middle picture, the edge of the teacup and plate shows this effect. This is due to less number of polygons used to tessellate the surface.</p>
+
+      <p>Due to the small number of polygon used, there are also shading artifect observed in the thrid picture. Compared to the smooth shading in the first rendering, adaptive tessellation gives a very 'spiky' highlight spot on the surface.</p>
+      
+      <p>With lower tolerence, the issues resolve themselves</p>
+      <img  src="converted/high_tol.png" height="400" width="400" align="center">
+      <p>Setting: adaptive tessellation with 0.03 as tolerence, 1492 triangles generated</p>
+
+<!--       Using different tolerence. -->
+      
+      <h2>Key functions</h2>
+      <p>Use 'w' to toggle between fill polygon and wireframes</p><br>
+      <img  src="converted/w_fill.png" height="300" width="300" align="center">
+      <img  src="converted/w_wire.png" height="300" width="300" align="center">
+
+      <p>Use 's' to toggle between smooth shading and flat shading</p><br>
+      <img  src="converted/smooth.png" height="300" width="300" align="center">
+      <img  src="converted/flat.png" height="300" width="300" align="center">
+
+      <p>Use arrow key to translate objects. Use shift+arrow key to rotate objects, we support rotation in x and y axes. use '+/-' to zoom in and out. This features are demonstrated in <a href="https://www.youtube.com/watch?v=CLh7OWfVCd8&feature=youtu.be">this link</a></p>
+      
+      <h2>Optional Features</h2>
+      <h3>Multiple Objects</h3>
+      <p>Use 'c' to toggle between activated object when multiple objects are loaded. The activated object will appear yellow</p><br>
+      <img  src="converted/multiple.png" height="300" width="300" align="center">
+      <h3>Image output</h3>
+      Press 'o' will output the current displaying image to a file 'image.bmp' under the current directory.
     </div>
   </div>
 </div>
