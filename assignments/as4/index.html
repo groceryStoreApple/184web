@@ -22,9 +22,9 @@
   
   
     
-      <link rel="stylesheet" href="../css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../../css/bootstrap.min.css" />
     
-      <link rel="stylesheet" href="../css/main.css" />
+      <link rel="stylesheet" href="../../css/main.css" />
     
     
   
@@ -83,7 +83,7 @@
 
 
 
-<a href="../aboutme/index.html">About Me</a>
+<a href="../../aboutme/index.html">About Me</a>
 
           </li>
         
@@ -97,7 +97,7 @@
 
 
 
-<a href="../assignments/index.html">Assignments</a>
+<a href="../../assignments/index.html">Assignments</a>
 
          </li>
         
@@ -187,7 +187,7 @@
   <div class="avatar-container">
     <div class="avatar-img-border">
       <a href="../index.html">
-        <img class="avatar-img" src="../img/avatar-icon.png" />
+        <img class="avatar-img" src="../../img/avatar-icon.png" />
     </a>
     </div>
   </div>
@@ -201,31 +201,16 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <p><br><br><br></p>
-      <p>Here is a list of assignments for this class</p>
-
-      <ul>
-        <li><a href="as0/index.html">Assignment0</a></li>
-        <li><a href="as1/index.html">Assignment1</a></li>
-        <li><a href="as2/index.html">Assignment2</a></li>
-        <li><a href="as3/index.html">Assignment3</a></li>
-        <li><a href="as4/index.html">Assignment4</a></li>
-
-
-      </ul>
-
-
-<!--       <p>My name is Haonan(Alex) Jing. I was born in mainland China and moved to Singapore for my high school when I was 14. Currently, I am a undergraduate studying computer science at UC Berkeley.</p>
-
-<p>I entered Cal as a chemistry major but I found my passion in computer science after taking cs61a with Prof. John DeNero. In complete honesty the transition was a real struggle, but I am so glad that there were so many people and resources out there to help me.</p>
-
-<p>I enjoy teaching CS because I understand how hard it can be for someone who has never coded in their life and it makes me really happy if I can help make coding less daunting to them, just like how others helped me.</p>
-
-<p>In my spare time, I enjoyed cooking and running. I will be running SF half marathon in the end of July.</p>
- -->
+      <h1 align="center">Inverse Kinematics</h1>
+      <p>This is the presentation of the results from the inverse kinematics rendering implemented by <a href="http://inst.cs.berkeley.edu/~cs184-ace/">Siqi Zuo</a> and me. Demo video at <a href="https://www.youtube.com/watch?v=MeehmPkuIhA&feature=youtu.be">link</a>
       
-    </div>
-  </div>
-</div>
+      <p>We used the framework from the last assignment to support useful utilities such as rotating the camera, zooming in and out, switching between wireframe mode and flat and smooth shading mode. Rotation and zoom are particularly conveninent to view the result. Press arrow keys to rotate. Press +/- to zoom in and out.</p>
+
+      <p>In the demo, we had two arms, each with five segments of varying lengths. The two yellow large balls are the objects that the arms follow. The ball that are further away from the center is moving in a figure eight trajectory. It sometimes goes out of reach of the arm. It was to demonstrate that the algorithm was able to remain stable and tries to reach the ball as much as possible. The ball that is closer to the center are oscillating along y-axis, it passes through the base point to demonstrate the stability of the solver</p>
+
+      <p>We implement the extra credit feature of multiple arms.</p>
+
+      
 <!-- 
 <div class="posts-list">
   
